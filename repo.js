@@ -28,18 +28,13 @@ const Repo = () => (
           </View>
         );
 
-      console.log({loading, error, data});
       return (
         <View style={styles.container}>
-          <Text>{data.user.name}'s Repositories </Text>
+          <Text>{data.user.name}'s GitHub Repositories! </Text>
           {!loading &&
             data.user.repositories.nodes.map(repo => (
-              <View>
-                <Text>{repo.name}</Text>
-              </View>
+              <ModalPopUp text={repo.name} />
             ))}
-
-          <ModalPopUp />
         </View>
       );
     }}

@@ -19,7 +19,7 @@ export default class ModalPopUp extends Component {
     this.setState({modalVisible: visible});
   }
 
-  render() {
+  render(props) {
     return (
       <View style={{marginTop: 20}}>
         <Modal
@@ -27,7 +27,6 @@ export default class ModalPopUp extends Component {
           transparent={false}
           visible={this.state.modalVisible}>
           <View style={styles.container}>
-            {/* {repo.name} */}
             <Text>Add notes to this Repository: </Text>
             <TextInput
               style={{height: 40, borderColor: "gray", borderWidth: 1}}
@@ -47,7 +46,7 @@ export default class ModalPopUp extends Component {
           onPress={() => {
             this.setModalVisible(true);
           }}>
-          <Text>Click for modal</Text>
+          <Text>{this.props.text}</Text>
         </TouchableHighlight>
       </View>
     );
