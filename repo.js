@@ -5,11 +5,11 @@ import {Query} from "react-apollo";
 import ModalPopUp from "./modal";
 
 const ALL_REPOS_QUERY = gql`
-  query repos {
-    viewer {
+  query {
+    user(login: "erinfox") {
+      id
       name
       repositories(last: 10) {
-        totalCount
         nodes {
           name
         }
@@ -27,11 +27,18 @@ const Repo = () => (
             <Text>Loading...</Text>
           </View>
         );
+
       console.log({loading, error, data});
       return (
         <View style={styles.container}>
-          {/* {!loading && data.viewer.map( => <View> <ModalPopUp /></View>)} */}
-          {/* {data.name} */}
+          <Text>{data.user.name}'s Repositories </Text>
+          {!loading &&
+            data.user.repositories.nodes.map(repo => (
+              <View>
+                <Text>{repo.name}</Text>
+              </View>
+            ))}
+
           <ModalPopUp />
         </View>
       );
@@ -52,4 +59,3 @@ const styles = StyleSheet.create({
 });
 
 export default Repo;
-// https://developer.github.com/v4/explorer/?variables=%20%7B%0A%20%20%20%22number_of_repos%22%3A%203%0A%7D&query=query%28%24number_of_repos%3AInt%21%29%20%7B%0A%20%20viewer%20%7B%0A%20%20%20%20name%0A%20%20%20%20%20repositories%28last%3A%20%24number_of_repos%29%20%7B%0A%20%20%20%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%7D%0A%20%20%20%7D%0A%7D%0A
