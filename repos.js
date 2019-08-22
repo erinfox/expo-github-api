@@ -27,10 +27,11 @@ const Repo = () => (
             <Text>Loading...</Text>
           </View>
         );
-
       return (
         <View style={styles.container}>
-          <Text>{data.user.name}'s GitHub Repositories! </Text>
+          <Text style={styles.header}>
+            {data.user.name}'s GitHub Repositories!{" "}
+          </Text>
           {!loading &&
             data.user.repositories.nodes.map(repo => (
               <ModalPopUp text={repo.name} key={repo.name} />
@@ -46,6 +47,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
+  },
+  header: {
+    fontWeight: "bold",
+    fontSize: 26
   },
   repoContainer: {
     height: 200,

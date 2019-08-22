@@ -4,7 +4,6 @@ import {
   Text,
   TouchableHighlight,
   View,
-  Alert,
   StyleSheet,
   TextInput
 } from "react-native";
@@ -27,26 +26,20 @@ export default class ModalPopUp extends Component {
           transparent={false}
           visible={this.state.modalVisible}>
           <View style={styles.container}>
-            <Text style={styles.textPadding}>
-              Add notes to this Repository:{" "}
+            <Text style={styles.text}>
+              Add notes to the {this.props.text} repository:
             </Text>
             <TextInput
-              style={{
-                height: 40,
-                width: "75%",
-                borderColor: "gray",
-                borderWidth: 1
-                // placeholder: "Type some notes here...",
-                // placeholderTextColor: "black"
-              }}
+              style={styles.textInput}
               onChangeText={text => this.setState({text})}
               value={this.state.text}
+              placeholder={"Start typing your note here..."}
             />
             <TouchableHighlight
               onPress={() => {
                 this.setModalVisible(!this.state.modalVisible);
               }}>
-              <Text style={styles.textPadding}>Submit notes</Text>
+              <Text style={styles.text}>Submit notes</Text>
             </TouchableHighlight>
           </View>
         </Modal>
@@ -55,7 +48,7 @@ export default class ModalPopUp extends Component {
           onPress={() => {
             this.setModalVisible(true);
           }}>
-          <Text>{this.props.text}</Text>
+          <Text style={styles.repoText}>{this.props.text}</Text>
         </TouchableHighlight>
       </View>
     );
@@ -63,9 +56,10 @@ export default class ModalPopUp extends Component {
 }
 
 onPress = () => {
-  // after adding an input on the repo, add the input value here:
+  // after adding an input for the repo notes, store the input value here:
   // https://jsonplaceholder.typicode.com/
-  // sounds like a post request.....?
+  // sounds like a post request
+  // https://github.com/invertase/react-native-firebase-starter
 };
 
 const styles = StyleSheet.create({
@@ -75,7 +69,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "pink"
   },
-  textPadding: {
-    paddingVertical: 20
+  text: {
+    paddingVertical: 20,
+    fontSize: 18
+  },
+  textInput: {
+    height: 40,
+    width: "75%",
+    backgroundColor: "white"
+  },
+  repoText: {
+    fontSize: 18,
+    color: "#808080"
   }
 });
