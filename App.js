@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ApolloClient from "apollo-boost";
-import Repo from "./repo";
+import Repos from "./repos";
 import {ApolloProvider} from "react-apollo";
 
 const client = new ApolloClient({
@@ -18,7 +18,7 @@ export default class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <Repo />
+        <Repos />
       </ApolloProvider>
     );
   }

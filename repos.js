@@ -33,7 +33,7 @@ const Repo = () => (
           <Text>{data.user.name}'s GitHub Repositories! </Text>
           {!loading &&
             data.user.repositories.nodes.map(repo => (
-              <ModalPopUp text={repo.name} />
+              <ModalPopUp text={repo.name} key={repo.name} />
             ))}
         </View>
       );

@@ -27,9 +27,18 @@ export default class ModalPopUp extends Component {
           transparent={false}
           visible={this.state.modalVisible}>
           <View style={styles.container}>
-            <Text>Add notes to this Repository: </Text>
+            <Text style={styles.textPadding}>
+              Add notes to this Repository:{" "}
+            </Text>
             <TextInput
-              style={{height: 40, borderColor: "gray", borderWidth: 1}}
+              style={{
+                height: 40,
+                width: "75%",
+                borderColor: "gray",
+                borderWidth: 1
+                // placeholder: "Type some notes here...",
+                // placeholderTextColor: "black"
+              }}
               onChangeText={text => this.setState({text})}
               value={this.state.text}
             />
@@ -37,7 +46,7 @@ export default class ModalPopUp extends Component {
               onPress={() => {
                 this.setModalVisible(!this.state.modalVisible);
               }}>
-              <Text>Add my notes</Text>
+              <Text style={styles.textPadding}>Submit notes</Text>
             </TouchableHighlight>
           </View>
         </Modal>
@@ -65,5 +74,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "pink"
+  },
+  textPadding: {
+    paddingVertical: 20
   }
 });
