@@ -11,7 +11,8 @@ import {
 export default class ModalPopUp extends Component {
   state = {
     modalVisible: false,
-    text: null
+    text: null,
+    postedText: []
   };
 
   setModalVisible(visible) {
@@ -38,9 +39,18 @@ export default class ModalPopUp extends Component {
             <TouchableHighlight
               onPress={() => {
                 this.setModalVisible(!this.state.modalVisible);
+                this.setState({
+                  postedText: this.state.postedText.concat(this.state.text)
+                });
+                this.setState({text: ""});
               }}>
               <Text style={styles.text}>Submit notes</Text>
             </TouchableHighlight>
+            <View>
+              {this.state.postedText.map(x => (
+                <Text>{x}</Text>
+              ))}
+            </View>
           </View>
         </Modal>
 

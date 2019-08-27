@@ -3,6 +3,8 @@ import ApolloClient from "apollo-boost";
 import Repos from "./repos";
 import {ApolloProvider} from "react-apollo";
 
+const token = "GET YOUT TOKEN FROM GITHUB AND PASTE HERE";
+
 const client = new ApolloClient({
   uri: "https://api.github.com/graphql",
   request: operation => {

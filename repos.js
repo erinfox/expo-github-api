@@ -20,7 +20,7 @@ const ALL_REPOS_QUERY = gql`
 
 const Repo = () => (
   <Query query={ALL_REPOS_QUERY}>
-    {({loading, error, data}) => {
+    {({loading, data}) => {
       if (loading)
         return (
           <View>
@@ -30,7 +30,7 @@ const Repo = () => (
       return (
         <View style={styles.container}>
           <Text style={styles.header}>
-            {data.user.name}'s GitHub Repositories!{" "}
+            {data.user.name}'s GitHub Repositories!
           </Text>
           {!loading &&
             data.user.repositories.nodes.map(repo => (
